@@ -104,8 +104,8 @@ def crea_agenda( dirage ):
 
            
 def main():
-    crea_index( "Docs\Correos", "Index" )
-    agenda = crea_agenda( "Docs\Agenda" )
+    crea_index( "Correos", "Index" )
+    agenda = crea_agenda( "Agenda" )
     apartado_a( "Index", agenda )
     apartado_b( "Index" )
     apartado_c( "Index" )

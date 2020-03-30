@@ -45,7 +45,7 @@ def extraerDatos():
 def almacenarBD():
     conn = sqlite3.connect('partidos.db')
     conn.text_factory = str
-    conn.execute("DROP TABLE PARTIDOS")   
+    conn.execute("DROP TABLE IF EXISTS PARTIDOS")   
     conn.execute('''CREATE TABLE PARTIDOS
        (ID INTEGER PRIMARY KEY  AUTOINCREMENT,
        JORNADA           INTEGER    NOT NULL,
