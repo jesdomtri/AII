@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block style_css %}
+  img { width : 200px; }
+{% endblock %}
+
+{% block encabezado %}
+<h1> Nuestras Recetas </h1>
+{% endblock %}
+
+{% block contenido %}
+	<ul>
+		{% for dato in datos %}
+	  	<li>
+	  		<a href='receta/{{dato.id}}'>{{dato.titulo}}</a><br>
+			<img src='{{MEDIA_URL}}{{dato.imagen}}'>
+	    </li>
+		{% endfor %}
+	</ul>
+{% endblock %}
