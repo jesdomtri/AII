@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block encabezado %}
+<h1> Las 5 noticias más comentadas </h1>
+{% endblock %}
+
+{% block contenido %}
+			{% for row in noticias %}
+			
+			    <dt><b>Titulo: </b>{{row.titulo}}</dt>
+			    <dd><b>Fuente: </b>{{row.fuente.nombre}}</dd>
+				<dd><b>Número de comentarios: </b>{{row.num_comentarios}}</dd>	    
+				<br>
+			{% endfor %}
+  {% endblock %}

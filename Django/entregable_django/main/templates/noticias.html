@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+
+{% block encabezado %}
+<h1> Noticias </h1>
+{% endblock %}
+
+  {% block contenido %}
+			{% for row in noticias %}
+			
+			    <dt><b>Titulo: </b>{{row.titulo}}</dt>
+			    <dd><b>Autor: </b>{{row.autor.nombre}} | <b>Fuente: </b>{{row.fuente.nombre}} | <b>Fecha: </b>{{row.fecha}} </dd> 
+				<br>
+			{% endfor %}
+  {% endblock %}

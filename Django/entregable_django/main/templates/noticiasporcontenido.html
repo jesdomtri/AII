@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block encabezado %}
+<h1> Busqueda de noticias por contenido </h1>
+{% endblock %}
+
+{% block contenido %}
+
+    	<form id="formulario" method="post" action=''>{% csrf_token %}
+    		{{formulario}}
+    		<input type='submit' value='Realizar Busqueda'/>
+    	</form>
+	    
+	    <hr>
+
+	    {% if noticias %}
+		    <h3> Total de noticias con el contenido buscado:  {{ noticias|length }}</h3>
+
+			{% for row in noticias %}
+			    <dt><b>Titulo: </b>{{row.titulo}} </dt>
+			    <dd><b>Contenido: </b>{{row.contenido}} </dd>	    
+			{% endfor %}
+
+			</dl>
+
+		{% endif %}
+	</div>
+{% endblock %}
