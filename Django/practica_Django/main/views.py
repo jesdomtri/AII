@@ -83,28 +83,19 @@ def mejores_vinos(request):
 
 def buscar_por_uvas(request):
     formulario = BusquedaPorUvaForm()
-    vinos = Vino.objects.all()
+    vinos = None
     if request.method=='POST':
         formulario = BusquedaPorUvaForm(request.POST)
         if formulario.is_valid():
-            uva=Uva.objects.get(id=formulario.cleaned_data['uva'])
+            uva = Uva.objects.get(id=formulario.cleaned_data['uva'].id)
             vinos = uva.vino_set.all()
     return render(request, 'busquedaporuva.html', {'formulario':formulario, 'vinos':vinos})
 
 def lista_vinos_por_denominacion(request):
     vinos=Vino.objects.all().order_by('denominacion')
-    #media = Vino.objects.filter(Vino__denominacion == 565).aggregate(Avg('precio'))
-    #print(media)
-    denominaciones = Denominacion.objects.all()
-    cont = []
-    for v in vinos:
-        aux = 0
-        acum = 0
-        for d in denominaciones:
-            if v.denominacion == d:
-                aux = aux + v.precio
-                acum = acum + 1
-        aux = aux / acum
-        cont.append({v.denominacion : aux})
-    print(cont)
-    return render(request,'vinospordenominacion.html', {'vinos':vinos, 'cont':cont})
+    denom = Denominacion.objects.values('nombre').annotate(average_precio=Avg('vino__precio'))
+    return render(request,'vinospordenominacion.html', {'vinos':vinos, 'denom':denom})
+
+def mejor_bodega(request):
+    bodegas = Bodega.objects.exclude(vino__puntuacion=None).values('nombre').annotate(relacion=Avg('vino__precio')/Avg('vino__puntuacion')).order_by('-relacion')[:1]
+    return render(request,'mejorbodega.html', {'bodegas':bodegas})

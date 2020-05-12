@@ -12,9 +12,6 @@
 				<dt><b>Bodega: </b>{{row.bodega.nombre}}</dt>
 				<dt><b>Denominación de origen: </b>{{row.denominacion.nombre}}</dt>
 				<dt><b>Precio: </b>{{row.precio}}</dt>
-				{% for u in row.uva.all %}
-			    	{{u.nombre}} 
-			    {% endfor %}
 				<br>
 			{% endfor %}
   {% endblock %}

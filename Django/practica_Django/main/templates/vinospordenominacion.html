@@ -14,5 +14,14 @@
 						<dt><b>Denominación de origen: </b>{{row.denominacion.nombre}}</dt>
 						<dt><b>Precio: </b>{{row.precio}}</dt>
 					{% endfor %}
+					{% regroup denom by nombre as d %}
+					{% for group2 in d %}
+						{% if group2.grouper|stringformat:"s" == group.grouper|stringformat:"s" %}
+							{% for row in group2.list %}
+								<br>
+								<dt><b>Precio medio de denominación: </b>{{row.average_precio}}</dt>
+							{% endfor %}
+						{% endif %}
+					{% endfor %}
 	    	{% endfor %}
 {% endblock %}

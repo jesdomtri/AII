@@ -25,5 +25,5 @@ urlpatterns = [
     path('buscarporuvas/', views.buscar_por_uvas),
     path('carga/', views.carga),
     path('listavinospordenominacion/', views.lista_vinos_por_denominacion),
-    #path('mejorbodega/', views.mejor_bodega),
+    path('mejorbodega/', views.mejor_bodega),
 ]

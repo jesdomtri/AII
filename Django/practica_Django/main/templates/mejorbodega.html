@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block encabezado %}
+<h1> Mejor bodega calidad-precio </h1>
+{% endblock %}
+
+{% block contenido %}
+
+	{% regroup bodegas by nombre as b %}
+		{% for group in b %}
+			{% for row in group.list %}
+				<dt><b>Nombre: </b>{{row.nombre}}</dt>
+				<dt><b>Relación calidad-precio: </b>{{row.relacion}}</dt>
+			{% endfor %}
+			<br>
+		{% endfor %}
+{% endblock %}
