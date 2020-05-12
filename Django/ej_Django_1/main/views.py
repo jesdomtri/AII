@@ -43,6 +43,7 @@ def populateDB():
         generos_director = s.find("div",id="datos_pelicula")
         generos = "".join(generos_director.find("p",class_="categorias").stripped_strings)
         generos = generos.split(sep=",")
+        
         directores = "".join(generos_director.find("p",class_="director").stripped_strings)
         director = directores.split(sep=",")[0]  #sólo se pide el primer director 
         
@@ -66,6 +67,7 @@ def populateDB():
         #añadimos la lista de géneros
         for g in lista_generos_obj:
             p.generos.add(g)
+            
         num_peliculas = num_peliculas + 1
 
     return ((num_peliculas, num_directores, num_generos, num_paises))

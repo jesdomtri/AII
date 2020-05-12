@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block encabezado %}
+<h1> Busqueda de Vinos por Uvas </h1>
+{% endblock %}
+
+{% block contenido %}
+
+
+    	<form id="formulario" method="post" action=''>{% csrf_token %}
+    		{{formulario}}
+    		<input type='submit' value='Realizar Busqueda'/>
+    	</form>
+	    
+	    <hr>
+
+	    {% if vinos %}
+		    <h3> Total de Vinos con la uva buscada:  {{ vinos|length }}</h3>
+
+			{% for row in vinos %}
+				<dt><b>Nombre: </b>{{row.nombre}} </dt>
+				<dd><b>Bodega: </b>{{row.bodega.nombre}} </dd>	
+				<dd><b>Denominacion de origen: </b>{{row.denominacion.nombre}} </dd>	
+			    <dd> <b>Uvas: </b>
+			    {% for u in row.uva.all %}
+			    	{{u.nombre}} 
+			    {% endfor %}
+			    </dd>		    
+			{% endfor %}
+
+			</dl>
+
+		{% endif %}
+	</div>
+{% endblock %}

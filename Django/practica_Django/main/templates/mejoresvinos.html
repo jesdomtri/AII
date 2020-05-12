@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block encabezado %}
+<h1> Mejores vinos </h1>
+{% endblock %}
+
+{% block contenido %}
+			{% for row in vinos %}
+			
+			    <dt><b>Nombre: </b>{{row.nombre}}</dt>
+			    <dd><b>Bodega: </b>{{row.bodega.nombre}}</dd>
+				<dd><b>Denominación de origen: </b>{{row.denominacion.nombre}}</dd>	 
+				<dd><b>Puntuación: </b>{{row.puntuacion}}</dd>   
+				<br>
+			{% endfor %}
+  {% endblock %}
