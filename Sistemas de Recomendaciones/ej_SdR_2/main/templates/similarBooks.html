@@ -1,0 +1,21 @@
+<html>
+
+<head>
+    <title>Sistema de Recomendacion - Movielens</title>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <section>
+        <h1>Cinco libros que mas se parecen a {{book.titulo}} son:</h1>
+        <l>
+            {% for f, s in books %}
+            <li>Título: {{f.titulo}} </li>
+            <li>Parecido: {{s | floatformat:"2"}}%</li>
+            <br>
+            {% endfor %}
+        </l>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<html>
+
+<head>
+    <title>Sistema de Recomendacion </title>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <h1>Peliculas Recomendadas para el Usuario {{user.id}}</h1>
+    {% for item, score in items %}
+    <ul>
+        <li>Titulo: {{item.titulo}} </li>
+        <li>Score:{{score | floatformat:"2"}}</li>
+        <br>
+    </ul>
+    {% empty %}
+    <h2> Datos insuficientes </h2>
+    {% endfor %}
+</body>
+
+</html>

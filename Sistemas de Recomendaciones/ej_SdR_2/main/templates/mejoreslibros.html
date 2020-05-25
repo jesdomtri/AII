@@ -1,0 +1,19 @@
+<html>
+
+<head>
+    <title>Sistema de Recomendacion</title>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <h1>Mejores libros</h1>
+    {% for row in libros %}
+
+    <dt><b>ISBN: </b>{{row.isbn}}</dt>
+    <dd><b>Título: </b>{{row.titulo}}</dd>
+    <dd><b>Autor: </b>{{row.autor}}</dd>
+    <br>
+    {% endfor %}
+</body>
+
+</html>
