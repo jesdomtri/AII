@@ -21,7 +21,6 @@ def loadDict():
         Prefs[user][itemid] = rating
     shelf['Prefs'] = Prefs
     shelf['ItemsPrefs'] = transformPrefs(Prefs)
-    shelf['SimItems'] = calculateSimilarItems(Prefs, n=10)
     shelf.close()
 
 
@@ -46,7 +45,6 @@ def search(request):
         form = UserForm(request.GET, request.FILES)
         if form.is_valid():
             idUser = form.cleaned_data['id']
-            #user = get_object_or_404(UserInformation, pk=idUser)
             rating = Rating.objects.filter(user=idUser)
             libros = Book.objects.all()
             return render(request, 'ratedBooks.html', {'idUser': idUser, 'puntuaciones': rating, 'libros': libros})
@@ -71,7 +69,7 @@ def similarBooks(request):
         form = IsbnForm(request.GET, request.FILES)
         if form.is_valid():
             idBook = form.cleaned_data['id']
-            book = get_object_or_404(Book, isbn=idBook)
+            book = get_object_or_404(Book, isbn=int(idBook))
             shelf = shelve.open("dataRS.dat")
             ItemsPrefs = shelf['ItemsPrefs']
             shelf.close()
@@ -98,18 +96,12 @@ def recommendedBooksUser(request):
             shelf.close()
             rankings = getRecommendations(Prefs, int(idUser))
             recommended = rankings[:10]
-            print("\n")
-            print(recommended)
-            print("\n")
             books = []
             scores = []
             for re in recommended:
-                print("\n")
-                print(re)
-                print("\n")
-                books.append(Book.objects.get(pk=re[1]))
+                books.append(Book.objects.get(isbn=re[1]))
                 scores.append(re[0])
             items = zip(books, scores)
-            return render(request, 'recommendationItems.html', {'user': user, 'items': items})
+            return render(request, 'recommendationItems.html', {'idUser':idUser,'user': user, 'items': items})
     form = UserForm()
     return render(request, 'search_user.html', {'form': form})
