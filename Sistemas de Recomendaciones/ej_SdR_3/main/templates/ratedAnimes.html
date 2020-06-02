@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <title>Sistema de Recomendacion</title>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <section>
+        <h1>Animes y Puntuaciones para el Usuario {{idUser}}</h1>
+        {% for puntuacion in puntuaciones %}
+        <ul> Anime ID: {{puntuacion.animeid}}</ul>
+        {% for l in animes %}
+        {% if l.animeid == puntuacion.animeid %}
+        <ul> Título: {{l.titulo}}</ul>
+        {% endif %}
+        {% endfor %}
+        <ul> Puntuacion: {{puntuacion.rating}}</ul>
+        <br>
+        {% empty %}
+        <h2> El Usuario no ha puntuado ningún anime</h2>
+        {% endfor %}
+    </section>
+</body>
+
+</html>

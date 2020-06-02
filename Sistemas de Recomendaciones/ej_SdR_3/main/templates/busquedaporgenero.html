@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <title>Sistema de Recomendacion</title>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <h1>Búsqueda por géneros</h1>
+
+    <form id="formulario" method="post" action=''>{% csrf_token %}
+        {{formulario}}
+        <input type='submit' value='Realizar Busqueda' />
+    </form>
+
+    <hr>
+
+    {% if animes %}
+    <h3> Total de animes con el genero buscado: {{ animes|length }}</h3>
+
+    {% for row in animes %}
+    <dt><b>Título: </b>{{row.titulo}} </dt>
+    <dd><b>Generos: </b>{{row.generos}} </dd>
+    <dd><b>Formato de emisión: </b>{{row.formato}} </dd>
+    <dd><b>Número de episodios: </b>{{row.numepisodios}} </dd>
+    <br>
+    {% endfor %}
+
+    </dl>
+
+    {% endif %}
+    </div>
+
+</body>
+
+</html>

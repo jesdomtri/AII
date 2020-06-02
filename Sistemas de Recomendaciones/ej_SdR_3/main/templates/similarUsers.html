@@ -1,0 +1,21 @@
+<html>
+
+<head>
+    <title>Sistema de Recomendacion</title>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <section>
+        <h1>Tres usuarios que mas se parecen a {{idUser}} son:</h1>
+        <l>
+            {% for f, s in users %}
+            <li>ID de usuario: {{f.user}} </li>
+            <li> Coeficiente de similaridad: {{s | floatformat:"2"}}%</li>
+            <br>
+            {% endfor %}
+        </l>
+    </section>
+</body>
+
+</html>

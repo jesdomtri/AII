@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <title>Sistema de Recomendacion </title>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <h1>Animes Recomendados para el Usuario {{idUser}}</h1>
+    {% for item, score in items %}
+    <ul>
+        <li>Anime ID: {{item}} </li>
+        {% for a in animes %}
+        {% if a.animeid|stringformat:"s" == item|stringformat:"s" %}
+        <li>Título de anime: {{a.titulo}} </li>
+        {% endif %}
+        {% endfor %}
+        <li>Score:{{score | floatformat:"2"}}</li>
+        <br>
+    </ul>
+    {% empty %}
+    <h2> Datos insuficientes </h2>
+    {% endfor %}
+</body>
+
+</html>
